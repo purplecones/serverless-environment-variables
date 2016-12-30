@@ -1,0 +1,12 @@
+service: serverless-environment-variables
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  environment:
+    MY_VAR: abc
+    SECRET_VAR: ${file(./serverless.env.yml):${opt:stage}.SECRET_VAR}
+
+functions:
+  hello:
+    handler: handler.hello
